@@ -7,10 +7,22 @@ const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
+  recommendedConfig: json.configs.recommended,
+  allConfig: json.configs.all,
 });
 
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+const eslintConfig=[
+  ...compat.extends(
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:tailwindcss/recommended",
+    "prettier"
+  ),
+  {
+    rules: {
+      "no-undef": "off",
+    },
+  },
 ];
 
 export default eslintConfig;
