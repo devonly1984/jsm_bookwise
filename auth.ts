@@ -3,7 +3,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { db } from "./drizzle/drizzle";
 import { users } from "./drizzle/schema";
 import { eq } from "drizzle-orm";
-import { compare } from "bcryptjs";
+import {compare} from 'bcryptjs'
+//New Comment
 export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
     strategy: "jwt",

@@ -6,6 +6,7 @@ const config = {
           ? process.env.NEXT_PUBLIC_PROD_API_ENDPOINT
           : process.env.NEXT_PUBLIC_API_ENDPOINT,
     },
+    //New Commit for comment
     imagekit: {
       publicKey: process.env.NEXT_PUBLIC_IK_PUBLIC_KEY!,
       urlEndpoint: process.env.NEXT_PUBLIC_IK_URL_ENDPOINT!,
