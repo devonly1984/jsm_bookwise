@@ -102,7 +102,7 @@ const AuthForm = <T extends FieldValues>({
             />
           ))}
           <Button type="submit" className="form-btn">
-            {isSignIn ? ":Sign In" : "Sign Up"}
+            {isSignIn ? "Sign In" : "Sign Up"}
           </Button>
         </form>
       </Form>
