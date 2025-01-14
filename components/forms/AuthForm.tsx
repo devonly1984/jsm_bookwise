@@ -1,12 +1,12 @@
 "use client"
 import { zodResolver } from "@hookform/resolvers/zod"
 import {useForm, UseFormReturn,SubmitHandler, DefaultValues, FieldValues, Path} from 'react-hook-form';
-import {z, ZodType} from 'zod'
+import { ZodType } from "zod";
 import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
+
   FormField,
   FormItem,
   FormLabel,
@@ -16,6 +16,8 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link";
 import { FIELD_NAMES, FIELD_TYPES } from "@/constants";
 import ImageUpload from "./ImageUpload";
+import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 interface Props<T extends FieldValues> {
   schema: ZodType<T>;
   defaultValues: T;
@@ -33,7 +35,26 @@ const AuthForm = <T extends FieldValues>({
     resolver: zodResolver(schema),
     defaultValues: defaultValues as DefaultValues<T>,
   });
-  const handleSubmit: SubmitHandler<T> = async (data) => {};
+  const {toast} = useToast()
+  const router = useRouter()
+  const handleSubmit: SubmitHandler<T> = async (data) => {
+    const result = await onSubmit(data);
+    if (result.success) {
+      toast({
+        title: "Success",
+        description: isSignIn
+          ? "You have successfully signed in."
+          : "You have successfully signed up",
+      });
+      router.push("/");
+    } else {
+      toast({
+        title: `Error ${isSignIn ? "Signing In" : "Signing up"}`,
+        description: result.error ?? "An error occurred.",
+        variant: "destructive",
+      });
+    }
+  };
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-semibold text-white">
