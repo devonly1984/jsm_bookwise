@@ -1,11 +1,10 @@
 const config = {
   env: {
-    apiEndpoint: {
-      apiEndpoint:
-        process.env.NODE_ENV === "production"
-          ? process.env.NEXT_PUBLIC_PROD_API_ENDPOINT
-          : process.env.NEXT_PUBLIC_API_ENDPOINT,
-    },
+    apiEndpoint:
+      process.env.NODE_ENV === "production"
+        ? process.env.NEXT_PUBLIC_PROD_API_ENDPOINT!
+        : process.env.NEXT_PUBLIC_API_ENDPOINT!,
+
     //New Commit for comment
     imagekit: {
       publicKey: process.env.NEXT_PUBLIC_IK_PUBLIC_KEY!,
@@ -20,6 +19,9 @@ const config = {
       redisToken: process.env.UPSTASH_REDIS_TOKEN,
       qstashurl: process.env.QSTASH_URL,
       qstashtoken: process.env.QSTASH_TOKEN,
+    },
+    resend: {
+      resendToken: process.env.RESEND_TOKEN,
     },
   },
 };

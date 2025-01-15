@@ -20,3 +20,8 @@ interface AuthCredentials {
   universityId: number;
   universityCard: string;
 }
+interface EmailProps {
+  email:string;
+  subject:string;
+  message:string;
+}
