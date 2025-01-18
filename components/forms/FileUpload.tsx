@@ -32,12 +32,13 @@ const authenticator = async()=>{
     }
 }
 interface Props {
-  type: 'image'|'video';
+  type: "image" | "video";
   accept: string;
-  placeholder:string;
-  folder:string;
-  variant: 'dark'|'light'
-  onFileChange: (filePath:string)=>void;
+  placeholder: string;
+  folder: string;
+  variant: "dark" | "light";
+  onFileChange: (filePath: string) => void;
+  value?: string;
 }
 const {env:{imagekit:{publicKey,privateKey,urlEndpoint}}}=config;
 const FileUpload = ({
@@ -47,9 +48,12 @@ const FileUpload = ({
   folder,
   variant,
   onFileChange,
+  value,
 }: Props) => {
   const ikUploadRef = useRef(null);
-  const [file, setFile] = useState<{ filePath: string } | null>(null);
+  const [file, setFile] = useState<{ filePath: string | null}>({
+    filePath: value ?? null,
+  });
   const [progress, setProgress] = useState(0);
   const styles = {
     button:
@@ -76,7 +80,7 @@ const FileUpload = ({
       description: `${res.filePath} Uploaded Successfully!`,
     });
   };
-  const onValidate = (file:File)=>{
+  const onValidate = (file: File) => {
     if (type === "image") {
       if (file.size > 20 * 1024 * 1024) {
         toast({
@@ -97,7 +101,7 @@ const FileUpload = ({
       }
     }
     return true;
-  }
+  };
   return (
     <ImageKitProvider
       urlEndpoint={urlEndpoint}
@@ -141,7 +145,7 @@ const FileUpload = ({
           <p className={cn("upload-filename", styles.text)}>{file.filePath}</p>
         )}
       </button>
-      {progress > 0 && (
+      {progress > 0 && progress !== 100 && (
         <div className="w-full rounded-full bg-green-200">
           <div className="progress" style={{ width: `${progress}%` }}>
             {progress}%
@@ -150,14 +154,14 @@ const FileUpload = ({
       )}
       {file && type === "image" ? (
         <IKImage
-          alt={file.filePath}
-          path={file.filePath}
+          alt={file?.filePath ?? "default"}
+          path={file?.filePath ?? "default-image.png"}
           width={500}
           height={300}
         />
       ) : type === "video" ? (
         <IKVideo
-          path={file?.filePath}
+          path={file?.filePath ?? ""}
           controls={true}
           className="h-96 w-full rounded-xl"
         />
