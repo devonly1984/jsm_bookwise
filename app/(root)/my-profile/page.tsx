@@ -1,7 +1,7 @@
 import { signOut } from "@/auth";
 import BookList from "@/components/books/BookList";
 import { Button } from "@/components/ui/button"
-import { sampleBooks } from "@/constants";
+
 
 const MyProfile = () => {
   return (

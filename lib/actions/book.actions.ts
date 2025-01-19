@@ -13,7 +13,7 @@ export const createBook = async(params:BookParams)=>{
             success: true,
             data: JSON.parse(JSON.stringify(newBook[0])),
           };
-    } catch (error) {
+    } catch (error:any) {
         console.log(error);
         return {
           success: false,

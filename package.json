@@ -10,7 +10,8 @@
     "shadadd": "npx -f shadcn@latest add",
     "drizzle_migrate": "npx drizzle-kit --config=./drizzle/drizzle.config.ts generate",
     "drizzle_push": "npx drizzle-kit --config=./drizzle/drizzle.config.ts push",
-    "drizzle_studio": "npx drizzle-kit --config=./drizzle/drizzle.config.ts studio"
+    "drizzle_studio": "npx drizzle-kit --config=./drizzle/drizzle.config.ts studio",
+    "drizzle_seed": "npx tsx ./drizzle/seed.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -25,6 +26,7 @@
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dayjs": "^1.11.13",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.38.3",
     "imagekit": "^6.0.0",

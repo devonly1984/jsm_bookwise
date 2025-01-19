@@ -55,7 +55,7 @@ export const navigationLinks = [
     password: "password",
   };
   
-  export const sampleBooks = [
+  /*export const sampleBooks = [
     {
       id: 1,
       title: "The Midnight Library",
@@ -191,4 +191,4 @@ export const navigationLinks = [
         isLoanedBook:true
     },
     
-  ];
+  ]*/;
